@@ -5,6 +5,14 @@ labels: ["bug"]
 assignees: JugieNoob
 title: "Bug Report: "
 body:
+  - type: checkboxes
+    attributes:
+      label: Checklist
+      description: Make sure to do all of these!
+      options:
+        - label: I have tested this bug without any other mods installed.
+        - label: I have checked that this bug hasn't been reported.
+        - label: I have properly titled my issue.
   - type: input
     attributes:
       label: Mod Version
