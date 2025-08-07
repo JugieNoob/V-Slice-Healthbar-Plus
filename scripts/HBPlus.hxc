@@ -1,5 +1,8 @@
+import funkin.modding.module.Module;
 import funkin.play.PlayState;
+import flixel.util.FlxColor;
 import flixel.FlxG;
+
 
 class HBPlus extends Module {
 
@@ -9,7 +12,64 @@ class HBPlus extends Module {
 	
 	override function onCountdownStart(event)
 	{
-		super.onCountdownStart(event)
+		super.onCountdownStart(event);
+		if (PlayState.instance != null)
+		{
+			if (PlayState.instance.healthBar != null)
+			{
+				PlayState.instance.healthBar.createFilledBar(findIconColour(PlayState.instance.iconP2), findIconColour(PlayState.instance.iconP1));
+			}
+		}
 	}
+
+	function findIconColour(icon)
+    {
+		var iconColour;
+        var colorArray = [];
+        var lightestColour = 0;
+        if (icon != null)
+        {
+            var ypos = 0;
+            var xpos = 0;
+            // Try to get the colours
+            for (i in 0...30)
+            {
+                iconColour = icon.pixels.getPixel(xpos,ypos);
+                   
+                if (iconColour != 0 && !colorArray.contains(iconColour) && iconColour != 16777215)
+                {
+                    colorArray.push(iconColour);
+                }
+                if (ypos < 50)
+                {
+                    ypos += 5;
+                }
+                xpos += 5;
+            }
+            // Find the lightest colour
+            if (colorArray != [])
+            {
+                for (i in 0...colorArray.length)
+                {
+                    if (colorArray[i] > lightestColour)
+                    {
+                        iconColour = colorArray[i];
+                        lightestColour = colorArray[i];
+                    }
+                }
+
+            }
+            else
+            {
+                iconColour = 16777215;
+            }   
+      
+            
+            
+			return FlxColor.fromString(FlxColor.toHexString(iconColour, false));
+        }
+
+		return 0xFFFFFFFF;
+    }
 }
 
