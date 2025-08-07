@@ -1,0 +1,15 @@
+import funkin.play.PlayState;
+import flixel.FlxG;
+
+class HBPlus extends Module {
+
+	function new() {
+		super("Health Bar +");
+	}
+	
+	override function onCountdownStart(event)
+	{
+		super.onCountdownStart(event)
+	}
+}
+

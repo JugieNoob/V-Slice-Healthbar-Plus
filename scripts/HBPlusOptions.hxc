@@ -1,0 +1,25 @@
+import funkin.modding.module.Module;
+import funkin.ui.options.PreferencesMenu;
+import funkin.ui.options.OptionsState;
+import flixel.FlxG;
+import Std;
+
+class MiddlescrollOptions extends Module {
+    
+    function new (){
+        super("Health Bar + Options");
+    }
+
+    function onStateChangeEnd(event)
+    {
+        super.onStateChangeEnd(event);
+
+        if (Std.isOfType(event.targetState, OptionsState))
+        {
+            var preferences = event.targetState.optionsCodex.pages.get("preferences");
+
+        }
+    }
+
+
+}
