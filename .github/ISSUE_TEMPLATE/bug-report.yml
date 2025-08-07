@@ -31,10 +31,10 @@ body:
 
 
   - type: textarea
-      attributes:
-        label: Describe the bug you encountered
-      validations:
-       required: true
+    attributes:
+      label: Describe the bug you encountered
+    validations:
+      required: true
 
   - type: textarea
     attributes:
