@@ -6,7 +6,7 @@ A mod for the **FNF V-Slice Engine** that changes the colour of the in-game heal
 
 ## How to Install
 
-1.    Download the latest version from the [Releases]() tab.
+1.    Download the latest version from the [Releases](https://github.com/JugieNoob/V-Slice-Healthbar-Plus/releases) tab.
 2.    Place the .zip file into the Friday Night Funkin' mods folder.
 
 ## Screenshots
