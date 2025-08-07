@@ -23,9 +23,9 @@ body:
     attributes:
       label: Device
       description: Which platform are you playing on?
-    options:
-      - Mobile
-      - PC
+      options:
+        - Mobile
+        - PC
     validations:
       required: true
 
