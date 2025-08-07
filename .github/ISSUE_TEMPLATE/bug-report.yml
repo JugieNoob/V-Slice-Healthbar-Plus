@@ -5,12 +5,6 @@ labels: ["bug"]
 assignees: JugieNoob
 title: "Bug Report: "
 body:
-- type: input
-  attributes:
-     label: Mod Version
-     placeholder: ex. 1.0.0
-   validations:
-     required: true
 
 - type: input
     attributes:
