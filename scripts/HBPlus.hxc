@@ -6,6 +6,9 @@ import flixel.FlxG;
 
 class HBPlus extends Module {
 
+	var playerID;
+	var opponentID;
+
 	function new() {
 		super("Health Bar +");
 	}
@@ -18,9 +21,40 @@ class HBPlus extends Module {
 			if (PlayState.instance.healthBar != null)
 			{
 				PlayState.instance.healthBar.createFilledBar(findIconColour(PlayState.instance.iconP2), findIconColour(PlayState.instance.iconP1));
+				PlayState.instance.healthBar.updateBar();
+				playerID = PlayState.instance.iconP1.characterId;
+				opponentID = PlayState.instance.iconP2.characterId;
 			}
 		}
 	}
+
+	override function onUpdate(event)
+	{
+		super.onUpdate(event);
+
+		if (PlayState.instance != null)
+		{
+			if (PlayState.instance.healthBar != null)
+			{
+				if (playerID != PlayState.instance.iconP1.characterId)
+				{
+					playerID = PlayState.instance.iconP1.characterId;
+					PlayState.instance.healthBar.createFilledBar(findIconColour(PlayState.instance.iconP2), findIconColour(PlayState.instance.iconP1));
+					PlayState.instance.healthBar.updateBar();
+				}
+
+				if (opponentID != PlayState.instance.iconP2.characterId)
+				{
+					opponentID = PlayState.instance.iconP2.characterId;
+					PlayState.instance.healthBar.createFilledBar(findIconColour(PlayState.instance.iconP2), findIconColour(PlayState.instance.iconP1));
+					PlayState.instance.healthBar.updateBar();
+
+				}
+			}
+		}
+	}
+	
+
 
 	function findIconColour(icon)
     {
