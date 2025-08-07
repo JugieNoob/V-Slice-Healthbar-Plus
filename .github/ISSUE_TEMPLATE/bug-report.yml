@@ -1,7 +1,7 @@
 name: Bug Report
 description: Please describe your issue and fill out all the required fields.
 title: 'Bug Report:'
-labels: [bug]
+labels: ["bug"]
 assignees: JugieNoob
 title: "Bug Report: "
 body:
