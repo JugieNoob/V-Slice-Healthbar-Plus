@@ -5,47 +5,7 @@ labels: [bug]
 assignees: JugieNoob
 title: "Bug Report: "
 body:
-- type: input
-  attributes:
-      label: Mod Version
-      placeholder: ex. 1.0.0
-    validations:
-      required: true
-
-- type: input
-    attributes:
-      label: FNF Version
-      placeholder: ex. 0.8.0
-    validations:
-      required: true
-
-- type: dropdown
-    attributes:
-      label: Device
-      description: Which platform are you playing on?
-      options:
-        - Mobile
-        - PC
-    validations:
-      required: true
-
-
  - type: textarea
-    attributes:
-      label: Describe the bug you encountered
-    validations:
-      required: true
+   attributes:
+    label: Additional context
 
- - type: textarea
-    attributes:
-      label: How to reproduce this bug
-    validations:
-      required: true
-
- - type: textarea
-    attributes:
-      label: Additional context
-
-- type: markdown
-  attributes:
-    value: "### Please do not report issues from other engines. These must be reported in their respective repositories."
