@@ -1,9 +1,11 @@
 name: Bug Report
 about: Please describe your issue and fill out all the required fields.
 title: 'Bug Report:'
-labels: bug
+labels: [bug]
 assignees: JugieNoob
+title: "Bug Report: "
 body:
+
 - type: input
     attributes:
       label: Mod Version
