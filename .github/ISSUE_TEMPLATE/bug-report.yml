@@ -7,7 +7,7 @@ title: "Bug Report: "
 body:
 
 - type: input
-    attributes:
+  attributes:
       label: Mod Version
       placeholder: ex. 1.0.0
     validations:
