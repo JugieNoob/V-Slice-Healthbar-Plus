@@ -11,20 +11,44 @@ assignees: JugieNoob
 - [ ] I have checked that this bug hasn't been reported.
 - [ ] I have properly titled my issue.
 
-**Mod Version (ex: 1.0.0)**
+body:
+- type: input
+    attributes:
+      label: Mod Version
+      placeholder: ex. 1.0.0
+    validations:
+      required: true
+
+- type: input
+    attributes:
+      label: FNF Version
+      placeholder: ex. 0.8.0
+    validations:
+      required: true
+
+- type: dropdown
+    attributes:
+      label: Device
+      description: Which platform are you playing on?
+      options:
+        - Mobile
+        - PC
+    validations:
+      required: true
 
 
-**FNF Version (ex: 0.7.0)**
+ - type: textarea
+    attributes:
+      label: Describe the bug you encountered
+    validations:
+      required: true
 
+ - type: textarea
+    attributes:
+      label: How to reproduce this bug
+    validations:
+      required: true
 
-**Device (ex: PC, Mobile)**
-
-
-**Describe the bug**
-
-
-**How to reproduce this bug**
-
-
-
-**Additional context**
+ - type: textarea
+    attributes:
+      label: Additional context
