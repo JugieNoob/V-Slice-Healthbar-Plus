@@ -7,11 +7,18 @@ title: "Bug Report: "
 body:
 
 - type: input
-    attributes:
-     label: FNF Version
-     placeholder: ex. 0.8.0
-    validations:
-     required: true
+  attributes:
+    label: Mod Version
+    placeholder: ex. 1.0.0
+   validations:
+    required: true
+
+- type: input
+  attributes:
+    label: FNF Version
+    placeholder: ex. 0.8.0
+  validations:
+    required: true
 
 - type: dropdown
     attributes:
