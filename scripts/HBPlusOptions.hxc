@@ -8,6 +8,11 @@ class MiddlescrollOptions extends Module {
     
     function new (){
         super("Health Bar + Options");
+
+        if (FlxG.save.data.iconColouredHealthBar == null)
+        {
+            FlxG.save.data.iconColouredHealthBar = true;
+        }
     }
 
     function onStateChangeEnd(event)
@@ -18,6 +23,11 @@ class MiddlescrollOptions extends Module {
         {
             var preferences = event.targetState.optionsCodex.pages.get("preferences");
 
+            preferences.createPrefItemCheckbox("Icon Coloured Health Bar", "If enabled, the health bar's colours will be assigned to the icon colours (ex: the opponent's side will be purple and the player's side will be blue)",
+            function(value:Bool){
+                FlxG.save.data.iconColouredHealthBar = value;
+                FlxG.save.flush();
+            }, FlxG.save.data.iconColouredHealthBar);
         }
     }
 

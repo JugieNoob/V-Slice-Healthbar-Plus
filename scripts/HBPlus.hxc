@@ -16,6 +16,8 @@ class HBPlus extends Module {
 	override function onCountdownStart(event)
 	{
 		super.onCountdownStart(event);
+		if (!FlxG.save.data.iconColouredHealthBar) return;
+		
 		if (PlayState.instance != null)
 		{
 			if (PlayState.instance.healthBar != null)
@@ -31,6 +33,8 @@ class HBPlus extends Module {
 	override function onUpdate(event)
 	{
 		super.onUpdate(event);
+		
+		if (!FlxG.save.data.iconColouredHealthBar) return;
 
 		if (PlayState.instance != null)
 		{
