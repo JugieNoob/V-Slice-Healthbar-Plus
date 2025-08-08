@@ -46,6 +46,11 @@ body:
     validations:
       required: true
 
+      
+  - type: textarea
+    attributes:
+      label: Crash Log
+
   - type: textarea
     attributes:
       label: How to reproduce this bug
