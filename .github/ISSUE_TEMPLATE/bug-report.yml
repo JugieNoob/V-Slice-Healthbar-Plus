@@ -46,16 +46,17 @@ body:
     validations:
       required: true
 
-      
-  - type: textarea
-    attributes:
-      label: Crash Log
-
   - type: textarea
     attributes:
       label: How to reproduce this bug
     validations:
       required: true
+
+  - type: textarea
+    attributes:
+      label: Crash Log
+      description: Copy and paste the crash log if one was generated.
+      
   - type: textarea
     attributes:
       label: Additional context
