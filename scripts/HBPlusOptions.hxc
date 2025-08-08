@@ -4,7 +4,7 @@ import funkin.ui.options.OptionsState;
 import flixel.FlxG;
 import Std;
 
-class MiddlescrollOptions extends Module {
+class HBPlusOptions extends Module {
     
     function new (){
         super("Health Bar + Options");
