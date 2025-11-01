@@ -4,13 +4,27 @@
     Mod Github: https://github.com/JugieNoob/V-Slice-Healthbar-Plus
 */
 
-import funkin.modding.module.Module;
 import flixel.util.FlxColor;
+import funkin.save.Save;
 import Std;
 
 
 class IconColourFinder
 {
+
+    public static function findIconColour(icon)
+    {
+        if (Save.instance.modOptions["IconColourMethod"] == "New")
+        {
+            findIconColourNew(icon);
+        }
+        else
+        {
+            findIconColourOld(icon);
+        }
+    }
+
+
     public static function findIconColourOld(icon)
     {
         var iconColour;
@@ -22,13 +36,7 @@ class IconColourFinder
             var xpos = 0;
             // Try to get the colours
             for (i in 0...30)
-            {
-				var dot = new FlxSprite();
-				dot.makeGraphic(1,1);
-
-				PlayState.instance.add(dot);
-				dot.setPosition(icon.x + xpos, icon.y + ypos);
-
+            {			
                 iconColour = icon.pixels.getPixel(xpos,ypos);
                    
                 if (iconColour != 0 && !colorArray.contains(iconColour) && iconColour != 16777215)
@@ -68,7 +76,7 @@ class IconColourFinder
     }
 
 
-	public static function findIconColour(icon)
+	public static function findIconColourNew(icon)
     {
 		var iconColour;
         var colorArray = [];

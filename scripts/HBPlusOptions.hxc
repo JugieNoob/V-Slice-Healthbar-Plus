@@ -1,17 +1,21 @@
 import funkin.modding.module.Module;
-import funkin.ui.options.PreferencesMenu;
 import funkin.ui.options.OptionsState;
-import flixel.FlxG;
-import Std;
+import funkin.save.Save;
 
 class HBPlusOptions extends Module {
     
     function new (){
-        super("Health Bar + Options");
+        super("Health Bar + Options", 1, {state: OptionsState});
 
-        if (FlxG.save.data.iconColouredHealthBar == null)
+        
+        if (Save.instance.modOptions["IconColouredHealthBar"] == null)
         {
-            FlxG.save.data.iconColouredHealthBar = true;
+            Save.instance.modOptions["IconColouredHealthBar"] = true;
+        }
+
+        if (Save.instance.modOptions["IconColourMethod"] == null)
+        {
+            Save.instance.modOptions["IconColourMethod"] = "New";
         }
     }
 
@@ -19,16 +23,18 @@ class HBPlusOptions extends Module {
     {
         super.onStateChangeEnd(event);
 
-        if (Std.isOfType(event.targetState, OptionsState))
-        {
-            var preferences = event.targetState.optionsCodex.pages.get("preferences");
+        var preferences = event.targetState.optionsCodex.pages.get("preferences");
 
-            preferences.createPrefItemCheckbox("Icon Coloured Health Bar", "If enabled, the health bar's colours will be assigned to the icon colours (ex: the opponent's side will be purple and the player's side will be blue)",
-            function(value:Bool){
-                FlxG.save.data.iconColouredHealthBar = value;
-                FlxG.save.flush();
-            }, FlxG.save.data.iconColouredHealthBar);
-        }
+        preferences.createPrefItemCheckbox("Icon Coloured Health Bar", "If enabled, the health bar's colours will be assigned to the icon colours (ex: the opponent's side will be purple and the player's side will be blue)",
+        function(value:Bool){
+            Save.instance.modOptions["IconColouredHealthBar"] = value;
+            Save.instance.flush();
+        }, Save.instance.modOptions["IconColouredHealthBar"]);
+
+        preferences.createPrefItemEnum("Coloured Healthbar Method", "Choose which method the game should use to find the icon colours. Old = before 1.1, New = after 1.1.", ["Old" => "Old", "New" => "New"], function(value:String){
+			Save.instance.modOptions["IconColourMethod"] = value;
+			Save.instance.flush();
+		}, Save.instance.modOptions["IconColourMethod"]);        
     }
 
 

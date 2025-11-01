@@ -1,6 +1,6 @@
 import funkin.modding.module.Module;
 import funkin.play.PlayState;
-import flixel.FlxG;
+import funkin.save.Save;
 
 class HBPlus extends Module {
 
@@ -26,7 +26,7 @@ class HBPlus extends Module {
 	{
 		super.onCountdownStart(event);
 		
-		if (!FlxG.save.data.iconColouredHealthBar) return;
+		if (!Save.instance.modOptions["IconColouredHealthBar"]) return;
 		
 	
 		if (PlayState.instance.healthBar != null)
@@ -59,7 +59,7 @@ class HBPlus extends Module {
 		super.onUpdate(event);
 	
 		
-		if (!FlxG.save.data.iconColouredHealthBar) return;
+		if (!Save.instance.modOptions["IconColouredHealthBar"]) return;
 		
 
 		if (PlayState.instance.healthBar != null)
