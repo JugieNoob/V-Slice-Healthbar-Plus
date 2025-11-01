@@ -21,7 +21,7 @@ A mod for the **FNF V-Slice Engine** that changes the colour of the in-game heal
 <img src=https://github.com/JugieNoob/V-Slice-Healthbar-Plus/blob/main/.github/images/4.png width=47.5%>
 </div>
 
-### Also works on mobile!
+### Also Works on Mobile!
 
 <div>
   <img src=https://github.com/JugieNoob/V-Slice-Healthbar-Plus/blob/main/.github/images/mobile1.png align=left width=31%>
