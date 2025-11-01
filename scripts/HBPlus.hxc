@@ -10,10 +10,20 @@ class HBPlus extends Module {
 	var playerID;
 	var opponentID;
 
+	var playerColour;
+	var oppColour;
+
 	function new() {
 		super("Health Bar +");
 	}
 	
+	override function onStateChangeBegin(event)
+	{
+		super.onStateChangeBegin(event);
+		playerColour = null;
+		oppColour = null;
+	}
+
 	override function onCountdownStart(event)
 	{
 		super.onCountdownStart(event);
@@ -23,7 +33,15 @@ class HBPlus extends Module {
 		{
 			if (PlayState.instance.healthBar != null)
 			{
-				PlayState.instance.healthBar.createFilledBar(findIconColour(PlayState.instance.iconP2), findIconColour(PlayState.instance.iconP1));
+				if (playerColour == null)
+				{
+					playerColour = findIconColour(PlayState.instance.iconP1);
+				}
+				if (oppColour == null)
+				{
+					oppColour = findIconColour(PlayState.instance.iconP2);
+				}
+				PlayState.instance.healthBar.createFilledBar(oppColour, playerColour);
 				PlayState.instance.healthBar.updateBar();
 				playerID = PlayState.instance.iconP1.characterId;
 				opponentID = PlayState.instance.iconP2.characterId;
@@ -44,14 +62,18 @@ class HBPlus extends Module {
 				if (playerID != PlayState.instance.iconP1.characterId)
 				{
 					playerID = PlayState.instance.iconP1.characterId;
-					PlayState.instance.healthBar.createFilledBar(findIconColour(PlayState.instance.iconP2), findIconColour(PlayState.instance.iconP1));
+
+					playerColour = findIconColour(PlayState.instance.iconP1);
+					PlayState.instance.healthBar.createFilledBar(oppColour, playerColour);
 					PlayState.instance.healthBar.updateBar();
 				}
 
 				if (opponentID != PlayState.instance.iconP2.characterId)
 				{
 					opponentID = PlayState.instance.iconP2.characterId;
-					PlayState.instance.healthBar.createFilledBar(findIconColour(PlayState.instance.iconP2), findIconColour(PlayState.instance.iconP1));
+					oppColour = findIconColour(PlayState.instance.iconP2);
+
+					PlayState.instance.healthBar.createFilledBar(oppColour, playerColour);
 					PlayState.instance.healthBar.updateBar();
 
 				}
@@ -67,7 +89,7 @@ class HBPlus extends Module {
         var colorArray = [];
 
 		// Lower = more detail
-		var detail:Int = 5;
+		var detail:Int = 3;
         // var lightestColour = 0;
         // if (icon != null)
         // {
@@ -125,12 +147,12 @@ class HBPlus extends Module {
 					{
 						colorArray.push(pixelColour);
 						
-						var dot = new FlxSprite();
-						dot.camera = PlayState.instance.camHUD;
-						dot.makeGraphic(1,1);
+						// var dot = new FlxSprite();
+						// dot.camera = PlayState.instance.camHUD;
+						// dot.makeGraphic(1,1);
 
-						PlayState.instance.add(dot);
-						dot.setPosition(icon.x + (i * detail), icon.y + (j * detail));
+						// PlayState.instance.add(dot);
+						// dot.setPosition(icon.x + (i * detail), icon.y + (j * detail));
 					}
 				}
 			}
@@ -170,6 +192,11 @@ class HBPlus extends Module {
 
 			iconColour = winningArray[0];
             
+
+			// Clear all arrays after done
+			colorArray = [];
+			frequencyArray = [];
+			winningArray = [];
             
 			return FlxColor.fromString(FlxColor.toHexString(iconColour, false));
         // }
