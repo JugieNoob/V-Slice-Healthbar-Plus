@@ -2,7 +2,8 @@ import funkin.modding.module.Module;
 import funkin.play.PlayState;
 import flixel.util.FlxColor;
 import flixel.FlxG;
-
+import flixel.math.FlxRect;
+import flixel.FlxSprite;
 
 class HBPlus extends Module {
 
@@ -64,50 +65,116 @@ class HBPlus extends Module {
     {
 		var iconColour;
         var colorArray = [];
-        var lightestColour = 0;
-        if (icon != null)
-        {
-            var ypos = 0;
-            var xpos = 0;
-            // Try to get the colours
-            for (i in 0...30)
-            {
-                iconColour = icon.pixels.getPixel(xpos,ypos);
-                   
-                if (iconColour != 0 && !colorArray.contains(iconColour) && iconColour != 16777215)
-                {
-                    colorArray.push(iconColour);
-                }
-                if (ypos < 50)
-                {
-                    ypos += 5;
-                }
-                xpos += 5;
-            }
-            // Find the lightest colour
-            if (colorArray != [])
-            {
-                for (i in 0...colorArray.length)
-                {
-                    if (colorArray[i] > lightestColour)
-                    {
-                        iconColour = colorArray[i];
-                        lightestColour = colorArray[i];
-                    }
-                }
 
-            }
-            else
-            {
-                iconColour = 16777215;
-            }   
+		// Lower = more detail
+		var detail:Int = 5;
+        // var lightestColour = 0;
+        // if (icon != null)
+        // {
+        //     var ypos = 0;
+        //     var xpos = 0;
+        //     // Try to get the colours
+        //     for (i in 0...30)
+        //     {
+		// 		var dot = new FlxSprite();
+		// 		dot.makeGraphic(1,1);
+
+		// 		PlayState.instance.add(dot);
+		// 		dot.setPosition(icon.x + xpos, icon.y + ypos);
+
+        //         iconColour = icon.pixels.getPixel(xpos,ypos);
+                   
+        //         if (iconColour != 0 && !colorArray.contains(iconColour) && iconColour != 16777215)
+        //         {
+        //             colorArray.push(iconColour);
+        //         }
+        //         if (ypos < 50)
+        //         {
+        //             ypos += 5;
+        //         }
+        //         xpos += 5;
+        //     }
+        //     // Find the lightest colour
+        //     if (colorArray != [])
+        //     {
+        //         for (i in 0...colorArray.length)
+        //         {
+        //             if (colorArray[i] > lightestColour)
+        //             {
+        //                 iconColour = colorArray[i];
+        //                 lightestColour = colorArray[i];
+        //             }
+        //         }
+
+        //     }
+        //     else
+        //     {
+        //         iconColour = 16777215;
+        //     }   
       
+			// iconColour = 
+			// trace(icon.graphic.bitmap.getPixels(new FlxRect(128, 128)));
+
+
+			for (i in 0...Std.int(icon.width) / detail)
+			{
+				for (j in 0...Std.int(icon.height) / detail)
+				{
+					var pixelColour = icon.graphic.bitmap.getPixel(i * detail, j * detail);
+					if (pixelColour != 0)
+					{
+						colorArray.push(pixelColour);
+						
+						var dot = new FlxSprite();
+						dot.camera = PlayState.instance.camHUD;
+						dot.makeGraphic(1,1);
+
+						PlayState.instance.add(dot);
+						dot.setPosition(icon.x + (i * detail), icon.y + (j * detail));
+					}
+				}
+			}
+			frequencyArray = [];
+
+			for (i in 0...colorArray.length)
+			{
+				var foundItem = false;
+				for (item in frequencyArray)
+				{
+					if (item[0] == colorArray[i])
+					{
+						item[1] += 1;
+						foundItem = true;
+					}
+				}
+
+				if (!foundItem)
+				{
+					frequencyArray.push([colorArray[i], 0]);
+				}
+				
+			
+			}
+
+			trace(frequencyArray);
+
+			winningArray = frequencyArray[0];
+
+			for (i in 1...frequencyArray.length)
+			{
+				if (frequencyArray[i][1] > winningArray[1])
+				{
+					winningArray = frequencyArray[i];
+				}
+			}
+
+			iconColour = winningArray[0];
             
             
 			return FlxColor.fromString(FlxColor.toHexString(iconColour, false));
-        }
+        // }
 
-		return 0xFFFFFFFF;
+		// return 0xFFFFFFFF;
     }
 }
 
