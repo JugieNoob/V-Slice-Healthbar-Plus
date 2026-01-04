@@ -15,7 +15,16 @@ class HBPlusOptions extends Module {
 
         if (Save.instance.modOptions["IconColourMethod"] == null)
         {
-            Save.instance.modOptions["IconColourMethod"] = "New";
+            Save.instance.modOptions["IconColourMethod"] = "Slow";
+        }
+
+        if (Save.instance.modOptions["IconColourMethod"] == "New")
+        {
+            Save.instance.modOptions["IconColourMethod"] = "Slow";
+        }
+        else if (Save.instance.modOptions["IconColourMethod"] == "Old")
+        {
+            Save.instance.modOptions["IconColourMethod"] = "Fast";
         }
     }
 
@@ -31,7 +40,7 @@ class HBPlusOptions extends Module {
             Save.instance.flush();
         }, Save.instance.modOptions["IconColouredHealthBar"]);
 
-        preferences.createPrefItemEnum("Coloured Healthbar Method", "Choose which method the game should use to find the icon colours. Old = before 1.1.0, New = after 1.1.0.", ["Old" => "Old", "New" => "New"], function(value:String){
+        preferences.createPrefItemEnum("Coloured Healthbar Method", "Choose which method the game should use to find the icon colours. (Slow may cause stutters!)", ["Fast" => "Fast", "Slow" => "Slow"], function(value:String){
 			Save.instance.modOptions["IconColourMethod"] = value;
 			Save.instance.flush();
 		}, Save.instance.modOptions["IconColourMethod"]);        

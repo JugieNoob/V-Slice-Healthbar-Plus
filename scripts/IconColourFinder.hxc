@@ -16,7 +16,7 @@ class IconColourFinder
     {
         if (icon != null)
         {
-            if (Save.instance.modOptions["IconColourMethod"] == "New")
+            if (Save.instance.modOptions["IconColourMethod"] == "Slow")
             {
                 findIconColourNew(icon);
             }
@@ -124,7 +124,7 @@ class IconColourFinder
 			
 		
 		}
-        
+
 		winningArray = frequencyArray[0];
 
 		for (i in 1...frequencyArray.length)
