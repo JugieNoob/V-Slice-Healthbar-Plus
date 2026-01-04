@@ -25,8 +25,11 @@ class IconColourFinder
                 findIconColourOld(icon);
             }
         }
-
-        return 0xFFFFFFFF;
+        else
+        {
+            return 0xFFFFFFFF;
+        }
+        
 
     }
 
@@ -121,9 +124,7 @@ class IconColourFinder
 			
 		
 		}
-
-		trace(frequencyArray);
-
+        
 		winningArray = frequencyArray[0];
 
 		for (i in 1...frequencyArray.length)
