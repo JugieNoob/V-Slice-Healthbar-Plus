@@ -14,14 +14,20 @@ class IconColourFinder
 
     public static function findIconColour(icon)
     {
-        if (Save.instance.modOptions["IconColourMethod"] == "New")
+        if (icon != null)
         {
-            findIconColourNew(icon);
+            if (Save.instance.modOptions["IconColourMethod"] == "New")
+            {
+                findIconColourNew(icon);
+            }
+            else
+            {
+                findIconColourOld(icon);
+            }
         }
-        else
-        {
-            findIconColourOld(icon);
-        }
+
+        return 0xFFFFFFFF;
+
     }
 
 
@@ -30,49 +36,44 @@ class IconColourFinder
         var iconColour;
         var colorArray = [];
         var lightestColour = 0;
-        if (icon != null)
-        {
-            var ypos = 0;
-            var xpos = 0;
-            // Try to get the colours
-            for (i in 0...30)
-            {			
-                iconColour = icon.pixels.getPixel(xpos,ypos);
-                   
-                if (iconColour != 0 && !colorArray.contains(iconColour) && iconColour != 16777215)
-                {
-                    colorArray.push(iconColour);
-                }
-                if (ypos < 50)
-                {
-                    ypos += 5;
-                }
-                xpos += 5;
-            }
-            // Find the lightest colour
-            if (colorArray != [])
+        var ypos = 0;
+        var xpos = 0;
+        // Try to get the colours
+        for (i in 0...30)
+        {			
+            iconColour = icon.pixels.getPixel(xpos,ypos);
+               
+            if (iconColour != 0 && !colorArray.contains(iconColour) && iconColour != 16777215)
             {
-                for (i in 0...colorArray.length)
-                {
-                    if (colorArray[i] > lightestColour)
-                    {
-                        iconColour = colorArray[i];
-                        lightestColour = colorArray[i];
-                    }
-                }
-
+                colorArray.push(iconColour);
             }
-            else
+            if (ypos < 50)
             {
-                iconColour = 16777215;
-            }   
-
-
-            
-			return FlxColor.fromString(FlxColor.toHexString(iconColour, false));
+                ypos += 5;
+            }
+            xpos += 5;
         }
+        // Find the lightest colour
+        if (colorArray != [])
+        {
+            for (i in 0...colorArray.length)
+            {
+                if (colorArray[i] > lightestColour)
+                {
+                    iconColour = colorArray[i];
+                    lightestColour = colorArray[i];
+                }
+            }
 
-		return 0xFFFFFFFF;
+        }
+        else
+        {
+            iconColour = 16777215;
+        }   
+
+
+        
+		return FlxColor.fromString(FlxColor.toHexString(iconColour, false));
     }
 
 
