@@ -14,6 +14,7 @@ class IconColourFinder
 
     public static function findIconColour(icon)
     {
+        findIconColourNew(icon);
         if (icon != null)
         {
             if (Save.instance.modOptions["IconColourMethod"] == "Slow")
@@ -76,13 +77,14 @@ class IconColourFinder
 
 
         
-		return FlxColor.fromString(FlxColor.toHexString(iconColour, false));
+		return FlxColor.fromString("0xFF" + FlxColor.toHexString(iconColour, false));
     }
 
 
 	public static function findIconColourNew(icon)
     {
-		var iconColour;
+        trace("finding colour");
+        var iconColour;
         var colorArray = [];
 
 		// Lower = more detail
@@ -92,6 +94,7 @@ class IconColourFinder
         {
             return;
         }
+        trace("icon is not null");
 		for (i in 0...Std.int(icon.width) / detail)
 		{
 			for (j in 0...Std.int(icon.height) / detail)
@@ -137,12 +140,13 @@ class IconColourFinder
 
 		iconColour = winningArray[0];
         
-
+        trace("icon colour: " + iconColour);
 		// Clear all arrays after done
 		colorArray = [];
 		frequencyArray = [];
 		winningArray = [];
-        
-		return FlxColor.fromString(FlxColor.toHexString(iconColour, false));
+
+		return FlxColor.fromString("0xFF" + FlxColor.toHexString(iconColour));
     }
 }
+    
