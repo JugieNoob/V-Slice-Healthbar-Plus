@@ -3,6 +3,12 @@ import funkin.play.PlayState;
 import funkin.save.Save;
 import funkin.util.Constants;
 
+/*
+	V-Slice Healthbar + created by JugieNoob
+	GitHub Link: https://github.com/JugieNoob/V-Slice-Healthbar-Plus
+	GameBanana Link: https://gamebanana.com/mods/612284
+*/
+
 class HBPlus extends Module {
 
 	var playerID;
@@ -14,13 +20,7 @@ class HBPlus extends Module {
 	function new() {
 		super("Health Bar +", 1, {state: PlayState});
 	}
-	
-	override function onStateChangeBegin(event)
-	{
-		super.onStateChangeBegin(event);
-		
-	
-	}
+
 
 	override function onCountdownStart(event)
 	{

@@ -1,17 +1,15 @@
+import flixel.util.FlxColor;
+import funkin.save.Save;
+import Std;
+
 /*
     Written by JugieNoob for the Healthbar+ mod
     Mod Page: https://gamebanana.com/mods/612284
     Mod Github: https://github.com/JugieNoob/V-Slice-Healthbar-Plus
 */
 
-import flixel.util.FlxColor;
-import funkin.save.Save;
-import Std;
-
-
 class IconColourFinder
 {
-
     public static function findIconColour(icon)
     {
         findIconColourNew(icon);

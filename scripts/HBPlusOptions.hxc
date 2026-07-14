@@ -2,6 +2,12 @@ import funkin.modding.module.Module;
 import funkin.ui.options.OptionsState;
 import funkin.save.Save;
 
+/*
+	V-Slice Healthbar + created by JugieNoob
+	GitHub Link: https://github.com/JugieNoob/V-Slice-Healthbar-Plus
+	GameBanana Link: https://gamebanana.com/mods/612284
+*/
+
 class HBPlusOptions extends Module {
     
     function new (){
