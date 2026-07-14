@@ -1,6 +1,7 @@
 import funkin.modding.module.Module;
 import funkin.play.PlayState;
 import funkin.save.Save;
+import funkin.util.Constants;
 
 class HBPlus extends Module {
 
@@ -18,13 +19,14 @@ class HBPlus extends Module {
 	{
 		super.onStateChangeBegin(event);
 		
-		playerColour = null;
-		oppColour = null;
+	
 	}
 
 	override function onCountdownStart(event)
 	{
 		super.onCountdownStart(event);
+		playerColour = null;
+		oppColour = null;
 		
 		if (!Save.instance.modOptions["IconColouredHealthBar"]) return;
 		
@@ -34,10 +36,18 @@ class HBPlus extends Module {
 			if (playerColour == null)
 			{
 				playerColour = IconColourFinder.findIconColour(PlayState.instance.iconP1);
+				if (playerColour == 0xFFFFFFFF)
+				{
+					playerColour = Constants.COLOR_HEALTH_BAR_GREEN;
+				}
 			}
 			if (oppColour == null)
 			{
 				oppColour = IconColourFinder.findIconColour(PlayState.instance.iconP2);
+				if (oppColour == 0xFFFFFFFF)
+				{
+					oppColour = Constants.COLOR_HEALTH_BAR_RED;
+				}
 			}
 			PlayState.instance.healthBar.createFilledBar(oppColour, playerColour);
 			PlayState.instance.healthBar.updateBar();
